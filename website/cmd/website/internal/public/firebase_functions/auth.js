@@ -1,9 +1,9 @@
-const Type = Object.freeze({
-    EDUCATION: 'education',
-    COMPANY: 'company'
+const AccessLevel = Object.freeze({
+    PUBLIC: 'public',
+    RESTRICTED: 'restricted',
 });
 
-const Level = Object.freeze({
+const UserType = Object.freeze({
     STUDENT: 'student',
     TEACHER: 'teacher',
     ADMIN: 'admin',
@@ -12,12 +12,12 @@ const Level = Object.freeze({
 });
 
 class User {
-    constructor(id, name, email, type, level) {
+    constructor(id, name, email, userType, accessLevel) {
         this.id = id;
         this.name = name;
         this.email = email;
-        this.type = type;
-        this.level = level;
+        this.userType = userType;
+        this.accessLevel = accessLevel;
     }
 
     toJSON() {
@@ -25,13 +25,13 @@ class User {
             id: this.id,
             name: this.name,
             email: this.email,
-            type: this.type,
-            level: this.level
+            userType: this.userType,
+            accessLevel: this.accessLevel
         };
     }
 
     static fromJSON(json) {
-        return new User(json.id, json.name, json.email, json.type, json.level);
+        return new User(json.id, json.name, json.email, json.userType, json.accessLevel);
     }
 
 }
@@ -56,13 +56,13 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const db = firebase.firestore();
 
 
-async function createUser(name, email, type, level) {
+async function createUser(name, email, userType, accessLevel) {
     try {
         var userObj = {
             name: name,
             email: email,
-            type: type,
-            level: level
+            userType: userType,
+            accessLevel: accessLevel
         };
 
         const docRef = await db.collection("users").add(userObj);
@@ -88,6 +88,8 @@ async function signUp() {
         var email = document.getElementById("username").value;
         var password = document.getElementById("password").value;
         var name = document.getElementById("name").value;
+        var userType = document.getElementById("type").value;
+        var accessLevel = AccessLevel.RESTRICTED;
         if (email.length < 4) {
             alert('Please enter an email address.');
             return;
@@ -100,12 +102,15 @@ async function signUp() {
             alert('Please enter a name.');
             return;
         }
+        if (userType === "student" || userType === "teacher") {
+            accessLevel = AccessLevel.PUBLIC;
+        }
         
         const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
         console.log(user);
         console.log("Signed Up");
-        createUser(name, email, Type.EDUCATION, Level.STUDENT);
+        createUser(name, email, userType, accessLevel);
 
         return user;
     } catch (error) {

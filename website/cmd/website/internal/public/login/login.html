@@ -2,13 +2,19 @@
 <html lang="en">
 <head>
   <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
+    <title>Login</title>
  
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <link rel="stylesheet" href="login_style.css">
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
+    <!-- <script defer src="./init-firebase.js"></script> -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <script defer src="/firebase_functions/auth.js" type="text/javascript"></script>
 </head>
 <body>
     <div class="background">
@@ -24,13 +30,16 @@
         <label for="password">Password</label>
         <input type="password" placeholder="Password" id="password">
 
-        <button>Log In</button>
+        <button onclick="signInWithGoogle()">Log In</button>
         <p>New? <a href="register.html">Sign up here</a></p>
 
         <div class="social">
-          <div class="go"><i class="fab fa-google"></i>  Google</div>
+          <a href="#" onclick="signInWithGoogle()">
+            <div class="go"><i class="fab fa-google"></i>  Google</div>
+          </a>
           <div class="fb"><i class="fab fa-facebook"></i>  Facebook</div>
         </div>
     </form>
+
 </body>
 </html>

@@ -119,6 +119,9 @@ async function signUp() {
         console.log("Signed Up");
         await createUser(user.uid, name, email, userType, accessLevel);
 
+        window.location.href = "/";
+        console.log("Redirected to home");
+
         return user;
     } catch (error) {
         alert("Error signing up" + error);
@@ -134,7 +137,8 @@ async function signIn() {
         const user = userCredential.user;
         console.log(user);
         console.log("Signed In");
-        // window.location.href = "index.html";
+        window.location.href = "/";
+        console.log("Redirected to home");
         return await readUser(user.uid);
     } catch (error) {
         alert("Invalid email or password");
@@ -146,7 +150,7 @@ async function signInWithGoogle() {
     try {
         const userCredential = await firebase.auth().signInWithPopup(provider);
         const user = userCredential.user;
-         window.location.href = "index.html";
+         window.location.href = "/";
         return user;
     } catch (error) {
         alert("Error signing in with Google");

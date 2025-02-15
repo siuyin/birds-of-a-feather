@@ -33,6 +33,7 @@ func main() {
 	}
 
 	http.HandleFunc("/{$}", indexFunc)
+	http.HandleFunc("/registry", registryFunc)
 
 	log.Println("starting web server")
 	log.Fatal(http.ListenAndServe(":"+dflt.EnvString("HTTP_PORT", "8080"), nil))
@@ -42,6 +43,12 @@ func main() {
 
 func indexFunc(w http.ResponseWriter, _ *http.Request) {
 	if err := tmpl.ExecuteTemplate(w, "main.html", tmplDat{Body: "main", JS: "/main.js"}); err != nil {
+		io.WriteString(w, err.Error())
+	}
+}
+
+func registryFunc(w http.ResponseWriter, _ *http.Request) {
+	if err := tmpl.ExecuteTemplate(w, "main.html", tmplDat{Body: "registry", JS: "/registry.js"}); err != nil {
 		io.WriteString(w, err.Error())
 	}
 }

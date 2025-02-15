@@ -36,7 +36,7 @@ func main() {
 	http.HandleFunc("/registry", registryFunc)
 
 	log.Println("starting web server")
-	log.Fatal(http.ListenAndServe(":"+dflt.EnvString("HTTP_PORT", "8080"), nil))
+	log.Fatal(http.ListenAndServe(":"+dflt.EnvString("HTTP_PORT", "8084"), nil))
 }
 
 // ------------------------------------------------

@@ -1,81 +1,95 @@
-#startCam {
-    background-color: crimson;
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
 }
-
-#startCam:hover:enabled {
-    background-color: red;
-}
-
-.min {
-    width: fit-content;
-}
-
-video {
-    margin: 3px;
-}
-
-pre {
-    border: 0;
-    background-color: transparent;
-}
-
-.footer {
+header {
+    padding: 25px;
     display: flex;
-    justify-content: center;
-    margin-top: 1rem;
-    font-size: x-small;
-}
-
-button.red {
-    background-color: darkred;
-    color: white;
-}
-
-button.red:hover {
-    background-color: red;
-    color: white;
-}
-
-button.green {
-    background-color: lime;
-    color: black;
-}
-
-button.green:hover {
-    background-color: greenyellow;
-    color: black;
-}
-
-button:disabled {
-    background-color: gray;
-    color: white;
-}
-
-.horizontal {
-    display: flex;
-    flex: auto;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
-
-select {
-    margin-right: 0.5em;
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
 }
-
-textarea {
-    margin-top: 0.5em;
-    margin-right: 0.5em;
+header p {
+    font-size: 1rem;
+    opacity: 0.8;
 }
-
-.hide {
-    /* visibility: collapse; */
-    display: none;
+nav {
+    background: #34495e;
+    padding: 0.5rem;
+    text-align: center;
 }
-
-.summary {
-    background-color: lightblue;
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 20px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: color 0.3s;
 }
-
-.heading {
-    font-weight: bold;
+nav a:hover {
+    color: #f1c40f;
+}
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background: #27ae60;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    transition: background 0.3s;
+}
+.btn:hover {
+    background: #219150;
+}
+.trello-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+}
+.trello-card-container{
+    background:#2c3e50; 
+    text-align: center; 
+    color:white
+}
+.trello-card {
+    width: 300px;
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.trello-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0px 12px 20px rgba(0, 0, 0, 0.15);
+}
+.trello-card a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 1.1rem;
+}
+.trello-card a:hover {
+    color: #f39c12;
+}
+.signup {
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }

@@ -19,6 +19,7 @@ const db = getFirestore();
 export const createUser = async (user) => {
     try {
         const docRef = await addDoc(collection(db, "users"), user);
+        console.log("Document written with ID: ", docRef.id);
         return docRef;
     } catch (error) {
         console.error(error);

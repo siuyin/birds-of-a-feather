@@ -15,23 +15,41 @@ function initializeFirebaseApp() {
   
 
 const app = initializeFirebaseApp();
-const auth = firebase.getAuth();
-// const provider = new firebase.auth.GoogleAuthProvider();
+// const auth = auth;
+const provider = new firebase.auth.GoogleAuthProvider();
 
 
-async function signUp(email, password) {
+async function signUp() {
     try {
-        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        var email = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        if (email.length < 4) {
+            alert('Please enter an email address.');
+            return;
+        }
+        if (password.length < 4) {
+            alert('Please enter a password.');
+            return;
+        }
+        const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
         const user = userCredential.user;
+        console.log(user);
+        console.log("Signed Up");
         return user;
     } catch (error) {
         console.error(error);
     }
 }
-async function signIn(email, password) {
+async function signIn() {
     try {
-        const userCredential = await signInWithEmailAndPassword(auth, email, password);
+        var email = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+        var name = document.getElementById("name").value;
+        const userCredential = firebase.auth().signInWithEmailAndPassword(email, password);
+
         const user = userCredential.user;
+        console.log(user);
+        console.log("Signed In");
         return user;
     } catch (error) {
         console.error(error);
@@ -40,7 +58,7 @@ async function signIn(email, password) {
 
 async function signInWithGoogle() {
     try {
-        const userCredential = await signInWithPopup(auth, provider);
+        const userCredential = await firebase.auth().signInWithPopup(provider);
         const user = userCredential.user;
         return user;
     } catch (error) {
@@ -50,7 +68,7 @@ async function signInWithGoogle() {
 
 async function signOut() {
     try {
-        await signOut(auth);
+        await firebase.auth().signOut();
     } catch (error) {
         console.error(error);
     }

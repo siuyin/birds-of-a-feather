@@ -9,6 +9,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <link rel="stylesheet" href="login_style.css">
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.2/firebase-app-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/11.0.2/firebase-auth-compat.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
+    <!-- <script defer src="./init-firebase.js"></script> -->
+    <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/6.0.1/firebase-ui-auth.css" />
+    <script defer src="/firebase_functions/auth.js" type="text/javascript"></script>
 
 </head>
 <body>
@@ -31,7 +37,7 @@
 
         <!-- <label for="Role">Role</label> -->
 
-        <button>Register</button>
+        <button onclick="signUp()">Register</button>
         <p>Already a user? <a href="login.html">Sign in here</a></p>
     </form>
 </body>

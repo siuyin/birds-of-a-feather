@@ -9,6 +9,10 @@
     {{if eq .Body "main"}} {{template "mainbody.html" .JS}}
     {{else if eq .Body "registry"}} {{template "registrybody.html" .JS}}
     {{else if eq .Body "memories"}} {{template "mainbody.html" .JS}}
+    {{else if eq .Body "admin"}} {{template "adminbody.html" .JS}}
+    {{else if eq .Body "ideator"}} {{template "ideatorbody.html" .JS}}
+    {{else if eq .Body "facilitator"}} {{template "facilitatorbody.html" .JS}}
+    {{else if eq .Body "logistics"}} {{template "logisticsbody.html" .JS}}
     {{end}}
     {{template "footer.html"}}
 </body>

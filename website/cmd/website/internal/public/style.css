@@ -152,3 +152,20 @@ tr:hover {
 .main-content{
     min-height: 100vh;
 }
+.accordion-button {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+    
+.badge-pending {
+    background-color: #ffc107;
+    color: #000;
+}
+.badge-approved {
+    background-color: #28a745;
+    color: white;
+}
+.badge-rejected {
+    background-color: #dc3545;
+    color: white;
+}

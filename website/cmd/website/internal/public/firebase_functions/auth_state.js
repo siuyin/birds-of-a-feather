@@ -15,6 +15,7 @@ function initializeFirebaseApp() {
   
 
 const app = initializeFirebaseApp();
+const db = firebase.firestore();
 manageLoginState();
 
 async function manageLoginState() {
@@ -32,6 +33,7 @@ async function manageLoginState() {
             // document.getElementById('user').style.display = "block";
             // document.getElementById('sign-out').style.display = "block";
             document.getElementById("sidebtn").textContent = "Logout";
+            managePermissionState(user);
             document.getElementById("sidebtn").href = "/";
             document.getElementById("sidebtn").addEventListener("click", async (evt) => {
                 console.log("button pushed");
@@ -51,4 +53,11 @@ async function manageLoginState() {
             
         }
     });
+}
+
+async function managePermissionState(user) {
+    // Permissions
+    const querySnapshot = await db.collection("users").where("id", "==", user.uid).get();
+    const docSnap = querySnapshot.docs.map(doc => doc.data().accessLevel)[0];
+    console.log(docSnap);
 }

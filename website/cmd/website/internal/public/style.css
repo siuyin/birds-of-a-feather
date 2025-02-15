@@ -4,6 +4,7 @@ body {
     padding: 0;
     background-color: #f9f9f9;
     color: #333;
+    min-height: 100vh;
 }
 header {
     padding: 25px;
@@ -92,4 +93,62 @@ nav a:hover {
     border-radius: 10px;
     box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
     text-align: center;
+}
+h1 {
+    text-align: center;
+    font-size: 2.2rem;
+    margin: 40px 0;
+}
+
+table {
+    width: 80%;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+th, td {
+    padding: 15px;
+    text-align: left;
+}
+
+th {
+    background-color: #2980b9;
+    color: white;
+}
+
+tr:nth-child(even) {
+    background-color: #ecf0f1;
+}
+
+tr:hover {
+    background-color: #f1c40f;
+    cursor: pointer;
+}
+
+@media (max-width: 768px) {
+    table {
+        width: 100%;
+    }
+
+    nav {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    nav a {
+        margin-bottom: 10px;
+    }
+}
+.footer {
+    background-color: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: auto; /* Pushes footer to the bottom of the page */
+}
+.main-content{
+    min-height: 100vh;
 }

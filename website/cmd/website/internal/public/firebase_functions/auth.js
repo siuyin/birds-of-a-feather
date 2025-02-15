@@ -84,6 +84,7 @@ async function readUser (userId) {
         console.log(docSnap);
         var user = User.fromJSON(docSnap);
         console.log("Document data:", user);
+        document.cookie = "user=" + user.name;
         return user;
     } catch (error) {
         console.error(error);
@@ -121,7 +122,7 @@ async function signUp() {
 
         window.location.href = "/";
         console.log("Redirected to home");
-
+        document.cookie = "user=" + name;
         return user;
     } catch (error) {
         alert("Error signing up" + error);
@@ -161,8 +162,24 @@ async function signInWithGoogle() {
 async function signOut() {
     try {
         await firebase.auth().signOut();
+        document.cookie = null;
     } catch (error) {
         alert("Error signing out");
+        console.error(error);
+    }
+}
+
+
+async function getUser() {
+    try {
+        const user = firebase.auth().currentUser;
+        if (user) {
+            return await readUser(user.uid);
+        } else {
+            console.log("No user signed in");
+            return null;
+        }
+    } catch (error) {
         console.error(error);
     }
 }

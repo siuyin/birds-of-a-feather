@@ -56,9 +56,10 @@ const provider = new firebase.auth.GoogleAuthProvider();
 const db = firebase.firestore();
 
 
-async function createUser(name, email, userType, accessLevel) {
+async function createUser(id, name, email, userType, accessLevel) {
     try {
         var userObj = {
+            id: id,
             name: name,
             email: email,
             userType: userType,
@@ -75,9 +76,15 @@ async function createUser(name, email, userType, accessLevel) {
 
 async function readUser (userId) {
     try {
-        const docRef = doc(db, "users", userId);
-        const docSnap = await db.collection("users").doc(userId);
-        return docSnap.data();
+        
+        // const docRef = db.doc("users/" + userId);
+        console.log(userId);
+        const querySnapshot = await db.collection("users").where("id", "==", userId).get();
+        const docSnap = querySnapshot.docs.map(doc => doc.data())[0];
+        console.log(docSnap);
+        var user = User.fromJSON(docSnap);
+        console.log("Document data:", user);
+        return user;
     } catch (error) {
         console.error(error);
     }
@@ -110,7 +117,10 @@ async function signUp() {
         const user = userCredential.user;
         console.log(user);
         console.log("Signed Up");
-        createUser(name, email, userType, accessLevel);
+        await createUser(user.uid, name, email, userType, accessLevel);
+
+        window.location.href = "/";
+        console.log("Redirected to home");
 
         return user;
     } catch (error) {
@@ -127,8 +137,9 @@ async function signIn() {
         const user = userCredential.user;
         console.log(user);
         console.log("Signed In");
-        window.location.href = "index.html";
-        return user;
+        window.location.href = "/";
+        console.log("Redirected to home");
+        return await readUser(user.uid);
     } catch (error) {
         alert("Invalid email or password");
         console.error(error);
@@ -139,7 +150,7 @@ async function signInWithGoogle() {
     try {
         const userCredential = await firebase.auth().signInWithPopup(provider);
         const user = userCredential.user;
-         window.location.href = "index.html";
+         window.location.href = "/";
         return user;
     } catch (error) {
         alert("Error signing in with Google");

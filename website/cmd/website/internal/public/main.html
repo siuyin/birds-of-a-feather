@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{template "header.html"}}
+</head>
+
+<body>
+    {{if eq .Body "main"}} {{template "mainbody.html" .JS}}
+    {{else if eq .Body "personallog"}} {{template "mainbody.html" .JS}}
+    {{else if eq .Body "memories"}} {{template "mainbody.html" .JS}}
+    {{end}}
+    {{template "footer.html"}}
+</body>
+
+</html>

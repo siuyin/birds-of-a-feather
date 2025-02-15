@@ -1,0 +1,81 @@
+#startCam {
+    background-color: crimson;
+}
+
+#startCam:hover:enabled {
+    background-color: red;
+}
+
+.min {
+    width: fit-content;
+}
+
+video {
+    margin: 3px;
+}
+
+pre {
+    border: 0;
+    background-color: transparent;
+}
+
+.footer {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    font-size: x-small;
+}
+
+button.red {
+    background-color: darkred;
+    color: white;
+}
+
+button.red:hover {
+    background-color: red;
+    color: white;
+}
+
+button.green {
+    background-color: lime;
+    color: black;
+}
+
+button.green:hover {
+    background-color: greenyellow;
+    color: black;
+}
+
+button:disabled {
+    background-color: gray;
+    color: white;
+}
+
+.horizontal {
+    display: flex;
+    flex: auto;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+select {
+    margin-right: 0.5em;
+}
+
+textarea {
+    margin-top: 0.5em;
+    margin-right: 0.5em;
+}
+
+.hide {
+    /* visibility: collapse; */
+    display: none;
+}
+
+.summary {
+    background-color: lightblue;
+}
+
+.heading {
+    font-weight: bold;
+}

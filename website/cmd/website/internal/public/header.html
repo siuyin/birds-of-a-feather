@@ -16,6 +16,7 @@
 <script defer src="https://www.gstatic.com/firebasejs/ui/6.1.0/firebase-ui-auth.js"></script>
 <script defer src='https://www.gstatic.com/firebasejs/11.3.1/firebase-firestore-compat.js'></script>
 <script defer src="/firebase_functions/auth_state.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
 <header>
@@ -24,10 +25,14 @@
             <h1>Birds of a Feather</h1>
             <p>Build your tribe / community in real life here.</p>
         </div>
-        <div>
-            <span class="text" id="namebox"></span>
-            <a href="" class="btn" id="sidebtn2"></a>
-            <a href="" class="btn" id="sidebtn"></a>
+        <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px; gap:4px">
+            <h6 class="text" id="namebox"></h6>
+            <button class="btn" id="dashboard" style="background-color: #4CAF50; display:none; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; font-size: 16px; border-radius: 5px; cursor: pointer;">
+                <a href="/dashboard" style="color: white; text-decoration: none;">Dashboard</a>
+            </button>
+            <a href="/login/login.html" class="btn" id="sidebtn" style="background-color: #dc3545; border: none; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; border-radius: 5px; cursor: pointer;">
+                Login
+            </a>
         </div>
     </div>
     

@@ -22,18 +22,11 @@ async function manageLoginState() {
     // Authentication
     const auth = firebase.auth();
     console.log("auth: ", auth);
-    await firebase.auth().onAuthStateChanged((user) => {
+    await firebase.auth().onAuthStateChanged(async (user) => {
         console.log(user);
         if (user !== null) {
-            // User is signed in, see docs for a list of available properties
-            // https://firebase.google.com/docs/reference/js/v8/firebase.User
-            // var uid = user.uid;
-            // document.getElementById("user").innerText = `userid: ${uid}, user email: ${user.providerData[0].email}, currentUser: ${auth.currentUser.uid}`;
-            // document.getElementById('firebaseui-auth-container').style.display = "none";
-            // document.getElementById('user').style.display = "block";
-            // document.getElementById('sign-out').style.display = "block";
-            document.getElementById("sidebtn").textContent = "Logout";
-            managePermissionState(user);
+            user = await managePermissionState(user);
+            document.getElementById("sidebtn").textContent = "Hello " + user.name + ", Logout ";
             document.getElementById("sidebtn").href = "/";
             document.getElementById("sidebtn").addEventListener("click", async (evt) => {
                 console.log("button pushed");
@@ -45,12 +38,9 @@ async function manageLoginState() {
             });
         } else {
             // User is signed out
-            // ...
             console.log("user not signed-in");
-            // document.getElementById('firebaseui-auth-container').style.display = "block";
             document.getElementById("sidebtn").textContent = "Login";
             document.getElementById("sidebtn").href = "/login/login.html";
-            
         }
     });
 }
@@ -58,6 +48,7 @@ async function manageLoginState() {
 async function managePermissionState(user) {
     // Permissions
     const querySnapshot = await db.collection("users").where("id", "==", user.uid).get();
-    const docSnap = querySnapshot.docs.map(doc => doc.data().accessLevel)[0];
-    console.log(docSnap);
+    const docSnap = querySnapshot.docs.map(doc => doc.data())[0];
+    console.log(docSnap.accessLevel);
+    return docSnap;
 }

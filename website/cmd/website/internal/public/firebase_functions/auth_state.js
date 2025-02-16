@@ -26,8 +26,11 @@ async function manageLoginState() {
         console.log(user);
         if (user !== null) {
             user = await managePermissionState(user);
-            document.getElementById("sidebtn").textContent = "Hello " + user.name + ", Logout ";
+            document.getElementById("namebox").textContent = await "Hello " + user.name;
+            document.getElementById("sidebtn").textContent = "Logout ";
             document.getElementById("sidebtn").href = "/";
+            document.getElementById("sidebtn2").textContent = "My Preferences";
+            
             document.getElementById("sidebtn").addEventListener("click", async (evt) => {
                 console.log("button pushed");
                 await auth.signOut().then(

@@ -38,6 +38,7 @@ func main() {
 	http.HandleFunc("/facilitator", facilitatorFunc)
 	http.HandleFunc("/logistics", logisticsFunc)
 	http.HandleFunc("/admin", adminFunc)
+	http.HandleFunc("/dashboard", dashboardFunc)
 
 	log.Println("starting web server")
 	log.Fatal(http.ListenAndServe(":"+dflt.EnvString("HTTP_PORT", "8080"), nil))
@@ -74,6 +75,11 @@ func facilitatorFunc(w http.ResponseWriter, _ *http.Request) {
 }
 func logisticsFunc(w http.ResponseWriter, _ *http.Request) {
 	if err := tmpl.ExecuteTemplate(w, "main.html", tmplDat{Body: "logistics", JS: "/logitics.js"}); err != nil {
+		io.WriteString(w, err.Error())
+	}
+}
+func dashboardFunc(w http.ResponseWriter, _ *http.Request) {
+	if err := tmpl.ExecuteTemplate(w, "main.html", tmplDat{Body: "dashboard", JS: "/dashboardbody.js"}); err != nil {
 		io.WriteString(w, err.Error())
 	}
 }

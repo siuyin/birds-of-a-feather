@@ -26,10 +26,12 @@ async function manageLoginState() {
         console.log(user);
         if (user !== null) {
             user = await managePermissionState(user);
-            document.getElementById("namebox").textContent = await "Hello " + user.name;
+            document.getElementById("namebox").textContent = await "Hello, " + user.name;
             document.getElementById("sidebtn").textContent = "Logout ";
             document.getElementById("sidebtn").href = "/";
-            document.getElementById("sidebtn2").textContent = "My Preferences";
+            //document.getElementById("sidebtn2").textContent = "My Preferences";
+            document.getElementById("dashboard").style.display ="inline-block";
+            document.getElementById("sidebtn").style.backgroundColor ="#f44336";
             
             document.getElementById("sidebtn").addEventListener("click", async (evt) => {
                 console.log("button pushed");
